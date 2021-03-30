@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-
+const fetch = require('node-fetch')
 
 function Postcode(match) {
 	let { id } = useParams()
@@ -19,7 +19,8 @@ function Postcode(match) {
 		<div>
 			<Link to="/">HOME</Link>
 			<div>
-				Hi {id}
+				<h1>POSTCODE</h1>
+				<p>Hi {id}</p>
 				{data.filter(d => d.postcode === id).map(filtered => (
 					<li>
 						{filtered.price} | {filtered.date}
