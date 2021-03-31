@@ -9,10 +9,11 @@ const useStyles = makeStyles({
   depositContext: {
     flex: 1,
   },
-});
+});	
 
 
 function Average(data) {	
+	const classes = useStyles();
 	const average = data.data.reduce((total, next) => total + next.price, 0) / data.data.length;
 	const av = average.toFixed()
 

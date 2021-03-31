@@ -11,6 +11,9 @@ import PPD from './components/PPD'
 import Price from './components/Price'
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Zoopla from './components/Zoopla'
+import T from './components/T'
 
 
 
@@ -23,16 +26,18 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+	background: theme.palette.background.paper,
+
   },  
   fixedHeight: {
     height: 240,
   },
-  wide: {
-    width: "100%",    
+  zoopHeight: {
+    height: 720,
   },
-  piewrap: {
-  	margin: "0 auto"
-  }
+  typestyle: {
+  	color: theme.palette.text.secondary
+  }  
 }));
 
 const fetch = require('node-fetch')
@@ -51,13 +56,12 @@ function Postcode(match) {
 		    .then((data) => setData(data.filter(d => d.postcode === id)))
 	}, [id])
 
-	console.log(data)
+	
 
 	return(
 		<Box className={classes.root} p={4}	>			
 			<Grid
-				container 
-				className={classes.wide}
+				container 				
 				spacing={3}
 				alignItems="center"
 				justify="center"
@@ -65,7 +69,7 @@ function Postcode(match) {
 				
 			>	
 				<Grid item xs={12} align="center">		
-					<h1>POSTCODE: {id}</h1>				
+					<Typography component="p" variant="h4" className={classes.typestyle}>POSTCODE: {id}</Typography>		    							
 				</Grid>			
 				<Grid item xs={12} md={9} align="center">					
 					<Paper className={fixedHeightPaper}>
@@ -77,6 +81,29 @@ function Postcode(match) {
 	                <Average data={data} />
 	              </Paper>		            
 		        </Grid>    		        
+				
+		        <Grid item xs={12} md={4} align="center" >					
+					<Paper className={fixedHeightPaper}>
+						<Types data={data} />
+					</Paper>		
+				</Grid>        			
+				<Grid item xs={12} md={4} align="center">					
+					<Paper className={fixedHeightPaper}>
+						<Types data={data} />
+					</Paper>		
+				</Grid>
+				<Grid item xs={12} md={4} align="center">					
+					<Paper className={fixedHeightPaper}>
+						<Types data={data} />
+					</Paper>		
+				</Grid>
+				
+				<Grid item xs={12} align="center" style={{ height: "100%" }}>					
+					<Paper className={fixedHeightPaper}>
+						<Zoopla id={id}/>	        	
+					</Paper>		
+				</Grid>				
+
 				<Grid item xs={12} md={6} align="center">					
 		              <Paper className={fixedHeightPaper}>
 		                <OldNew data={data} />  		
@@ -87,16 +114,6 @@ function Postcode(match) {
 		                <PPD data={data} /> 
 		              </Paper>
 		        </Grid>    
-		        <Grid item xs={6} align="center" className={classes.piewrap}>					
-					<Paper className={fixedHeightPaper}>
-						<Types data={data} />
-					</Paper>		
-				</Grid>        			
-				<Grid item xs={6} align="center" className={classes.piewrap}>					
-					<Paper className={fixedHeightPaper}>
-						<Types data={data} />
-					</Paper>		
-				</Grid>        	
 		    </Grid>  													
 		</Box>
 	)

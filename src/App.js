@@ -11,7 +11,7 @@ import Postcode from './Postcode'
 import Home from './Home'
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles'
-import { cyan, brown, deepOrange } from '@material-ui/core/colors'
+import { grey, brown, deepOrange } from '@material-ui/core/colors'
 import Header from './components/Header'
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -20,13 +20,14 @@ const fetch = require('node-fetch')
 const theme = createMuiTheme({
   palette: {
     secondary: {
-      main: cyan[50]
+      main: grey[50]
     },
     primary: {
       main: deepOrange[200]
     },
     background: {
-      default: brown[50]
+      default: brown[50],
+      paper: grey[100]
     }
   },
 });
