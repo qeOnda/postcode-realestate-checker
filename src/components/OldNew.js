@@ -26,8 +26,6 @@ function OldNew(data) {
 
 	const listItems = result.map((d) => <li key={d.age}>{d.age} | {numberWithCommas(Math.trunc(d.price/d.count))}</li>);
 
-	console.log(result)
-
 	return (
 		<div>
 			Old or new?

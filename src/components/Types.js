@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React from "react";
+import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
 
 function Types(data) {
 	let result = data.data.reduce(function(acc, curr) {	
@@ -26,11 +26,24 @@ function Types(data) {
 
 	const listItems = result.map((d) => <li key={d.type}>{d.type} | {numberWithCommas(Math.trunc(d.price/d.count))}</li>);
 
+	console.log(result)
+
 	return (
-		<div>
-			Types:
-			{listItems}
-		</div>
+		<ResponsiveContainer width="95%" height={200}>
+			<PieChart >	      
+		      <Pie
+		        dataKey="count"
+		        data={result}
+		        cx="50%" 
+		        cy="50%"
+		        innerRadius={40}
+		        outerRadius={80}
+		        fill="#82ca9d"
+		        label={(entry) => entry.type} 
+		      />
+		      <Tooltip />
+		    </PieChart>		   
+		</ResponsiveContainer>
 	)
 }
 
