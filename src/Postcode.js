@@ -21,16 +21,21 @@ import T from './components/T'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    minWidth: "100%",
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
 	background: theme.palette.background.paper,
-
+	minWidth: "100%",
   },  
   fixedHeight: {
     height: 240,
+  },
+  fixedPie: {
+    height: 300,
+    padding: theme.spacing(2),
   },
   zoopHeight: {
     height: 720,
@@ -59,61 +64,47 @@ function Postcode(match) {
 	
 
 	return(
-		<Box className={classes.root} p={4}	>			
+		<Box className={classes.root} p={6}	>			
 			<Grid
 				container 				
 				spacing={3}
-				alignItems="center"
-				justify="center"
-				style={{ minHeight: '80vh', maxWidth: '100%' }}
-				
+				direction="row"
+				alignItems="stretch"
+				justify="center"				
 			>	
 				<Grid item xs={12} align="center">		
 					<Typography component="p" variant="h4" className={classes.typestyle}>POSTCODE: {id}</Typography>		    							
 				</Grid>			
-				<Grid item xs={12} md={9} align="center">					
+				<Grid item xs={12} md={9} >					
 					<Paper className={fixedHeightPaper}>
 						<Price data={data} />									
 					</Paper>	
 		        </Grid>				
-		        <Grid item xs={12} md={3} align="center">				
+		        <Grid item xs={12} md={3} >				
 	              <Paper className={fixedHeightPaper}>
 	                <Average data={data} />
 	              </Paper>		            
 		        </Grid>    		        
 				
-		        <Grid item xs={12} md={4} align="center" >					
-					<Paper className={fixedHeightPaper}>
-						<Types data={data} />
+		        <Grid item xs={12} md={4}>					
+					<Paper className={classes.fixedPie}>
+						<OldNew data={data} />						
 					</Paper>		
 				</Grid>        			
-				<Grid item xs={12} md={4} align="center">					
-					<Paper className={fixedHeightPaper}>
+				<Grid item xs={12} md={4}>					
+					<Paper className={classes.fixedPie}>
 						<Types data={data} />
 					</Paper>		
 				</Grid>
-				<Grid item xs={12} md={4} align="center">					
-					<Paper className={fixedHeightPaper}>
-						<Types data={data} />
+				<Grid item xs={12} md={4} >					
+					<Paper className={classes.fixedPie}>
+						<PPD data={data} />
 					</Paper>		
 				</Grid>
 				
-				<Grid item xs={12} align="center" style={{ height: "100%" }}>					
-					<Paper className={fixedHeightPaper}>
-						<Zoopla id={id}/>	        	
-					</Paper>		
+				<Grid item xs={12}  style={{ height: "100%" }}>										
+					<Zoopla id={id}/>	        	
 				</Grid>				
-
-				<Grid item xs={12} md={6} align="center">					
-		              <Paper className={fixedHeightPaper}>
-		                <OldNew data={data} />  		
-		              </Paper>
-		        </Grid>    
-		        <Grid item xs={12} md={6} align="center">				
-		              <Paper className={fixedHeightPaper}>
-		                <PPD data={data} /> 
-		              </Paper>
-		        </Grid>    
 		    </Grid>  													
 		</Box>
 	)
