@@ -12,6 +12,5 @@ describe('App', () => {
     expect(screen.getByRole('searchbox')).toBeInTheDocument();
     expect(screen.queryByText(/this is a test/)).toBeNull();
 
-    // screen.debug();
   });
 });
